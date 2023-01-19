@@ -25,7 +25,7 @@ print(endpoint,"\n\nCoded By Arty06, open source code\n Github --> github.com/Ar
 print(Fore.GREEN + Style.BRIGHT +  "============================================================================================================================================================================================================================================\n\n")
 
 
-choice = int(input(Fore.CYAN + Style.BRIGHT + "Quel mode voulez vous choisir ?\n1-Plusieurs endpoints sur un site\n2-1 endpoint sur plusieurs sites\n"))
+choice = int(input(Fore.CYAN + Style.BRIGHT + "Wich mode would you like to choose ?\n1-Many endpoints on 1 website\n2-1 endpoint on many websites\n"))
 
 
 
@@ -43,11 +43,11 @@ if choice == 1:
     contenu = list.readlines()
     #Un tableau s'est créé,|0 = première ligne,1 = 2e ligne...
 
-    print(Fore.RED + Style.BRIGHT +"Par défault,la liste des endpoints est une petite liste random, si vous voulez modifier ces valeurs,vous avez juste à modifier le fichier `list.txt` !\n")
+    print(Fore.RED + Style.BRIGHT +"By default, the list of endpoints is a small random list, if you want to modify these values, you just have to modify the `list.txt` file!\n")
         
 
     #URL à tester
-    base_URL = input(Fore.CYAN + Style.BRIGHT + "Quelle est l'URL que vous souhaitez tester ?\n")
+    base_URL = input(Fore.CYAN + Style.BRIGHT + "Wich URL would you like to test ?\n")
     user_agent = ["Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "AppleWebKit/537.36 (KHTML, like Gecko)", "Chrome/109.0.0.0 Safari/537.36"]
     user_agent = user_agent[0]
     headers = {'user-Agent':user_agent}
@@ -62,7 +62,7 @@ if choice == 1:
         
         r = requests.get(modify_URL, headers=headers)
         print(r)
-        print(Fore.GREEN + Style.BRIGHT + "URL testée: ",modify_URL,"\n","Status:", r)
+        print(Fore.GREEN + Style.BRIGHT + "URL tested: ",modify_URL,"\n","Status:", r)
 
         #Faire la barre de progression
         total = len(contenu)
@@ -81,11 +81,11 @@ if choice == 1:
 
     #---------------------------------------------------------------------------------------RECAP-----------------------------------------------------------------------------
     print(Fore.GREEN + Style.BRIGHT + "\n\n==============================================================================================RECAP===========================================================================================\n\n")
-    print("Les endpoints valides sont les suivants:\n\n")
+    print("The valid endpoints are:\n\n")
     for t in range(0,len(accept_tab)):
         print(Fore.RED + Style.BRIGHT + accept_tab[t],"")
 
-    save = input(Fore.CYAN + Style.BRIGHT + "\n\n\nVoulez vous enregister les endpoints dans un fichier ? (Note: les endpoints seront ajoutés,si il en existe déjà dans le fichier,ils seront stockés dans: `endpoints.txt) (y/n)")
+    save = input(Fore.CYAN + Style.BRIGHT + "\n\n\nDo you want to save endpoints to a file? (Note: endpoints will be added, if any already exist in the file, they will be stored in: `endpoints.txt) (y/n)")
 
     #Nom avec site checked (base URl)
 
@@ -99,7 +99,7 @@ if choice == 1:
                 file.write(accept_tab[t])
                 file.write("\n")
             file.close()
-        print(Fore.RED + Style.BRIGHT + "\nLes résultats ont été enregistrés dans le fichier `endpoints_mode1.txt' !")
+        print(Fore.RED + Style.BRIGHT + "\nThe results have been saved to the file`endpoints_mode1.txt' !")
         
 
 
