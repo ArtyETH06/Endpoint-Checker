@@ -48,3 +48,14 @@ This mode will take all the endpoint of the `list1.txt` and try them on the URL 
 This mode will take all the website of the `list2.txt`and try the endpoint that you will have to choose:
 ![Capture d’écran (703)](https://user-images.githubusercontent.com/107058122/213552611-da2b8905-2cfa-4bb3-8493-71a5cb377c68.png)
 
+### Save the results
+
+Once the scan ios completed,you will have a list with all the valids endpoints,you can save them in the files `endpoints_mode1.txt` or `endpoint_mode2.txt`
+For that you juste have to enter `y` (who stands for yes):
+
+![Capture d’écran (704)](https://user-images.githubusercontent.com/107058122/213553081-79e49aa2-3046-49ba-9890-84daece8fa4e.png)
+
+
+That's it ! You can now use the tool as you want !
+
+Arty06
