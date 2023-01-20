@@ -159,14 +159,16 @@ elif choice == 2:
         line = contenu[i]
         line = line.replace("\n","")
         modify_endpoint =  line + base_endpoint
-        print("Trying ",modify_endpoint)
+
         
         r = requests.get(modify_endpoint, headers=headers)
-        print(r)
+
 
 #-----------------------------------------------------Endpoint valide------------------------------------------------------
 
         if r.status_code == 200 and modify_endpoint != base_endpoint:
+            print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print("Trying ",modify_endpoint)
             print(Fore.GREEN + Style.BRIGHT + "URL testée: ",modify_endpoint,"\n","Status:", r)
 
             #Faire la barre de progression
@@ -180,6 +182,8 @@ elif choice == 2:
 
 #-----------------------------------------------------------Endpoint non valide--------------------------------------------------------------
         else:
+            print(Fore.RED + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print("Trying ",modify_endpoint)
             print(Fore.RED + Style.BRIGHT + "URL testée: ",modify_endpoint,"\n","Status:", r,"\nNot valid endpoint")
 
             #Faire la barre de progression
