@@ -17,6 +17,15 @@ Then,go in your repository:
 ```
 cd Endpoint-Checker
 ```
+### Download the depedencies
+
+To download all the depedencies necessary to the project,you just need to do:
+```
+pip install -r requirements.txt
+```
+
+It will download everything you need ;)
+
 
 ### Setup your lists
 
