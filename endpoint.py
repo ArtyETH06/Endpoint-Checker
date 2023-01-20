@@ -58,23 +58,42 @@ if choice == 1:
         line = contenu[i]
         line = line.replace("\n","")
         modify_URL = base_URL + line
-        print("Trying ",modify_URL)
+
         
         r = requests.get(modify_URL, headers=headers)
-        print(r)
-        print(Fore.GREEN + Style.BRIGHT + "URL tested: ",modify_URL,"\n","Status:", r)
-
-        #Faire la barre de progression
-        total = len(contenu)
-        percentage = i * 100 / total
-        print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
-
-
-
+        #print(r)
+#---------------------------------------------Endpoint valide--------------------------------------------------------
         if r.status_code == 200 and modify_URL != base_URL:
-            accept_tab.append(modify_URL)
-        print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print("Trying ",modify_URL)
+            print(Fore.GREEN + Style.BRIGHT + "URL tested: ",modify_URL,"\n","Status:", r)
 
+            #Faire la barre de progression
+            total = len(contenu)
+            percentage = i * 100 / total
+            print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
+
+            accept_tab.append(modify_URL)
+            print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+
+
+#-----------------------------------------------Endpoint non valide-------------------------------------------------------------------
+
+        else:
+            print(Fore.RED + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print(Fore.RED + Style.BRIGHT + "URL tested: ",modify_URL,"\n","Status:", r,"\nNot valid endpoint")
+            #Faire la barre de progression
+            total = len(contenu)
+            percentage = i * 100 / total
+            print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
+
+
+
+            accept_tab.append(modify_URL)
+            print(Fore.RED+ Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+
+
+    #Fin du scan
     print(Fore.RED + Style.BRIGHT + "SCAN COMPLETED")
 
 
@@ -99,7 +118,7 @@ if choice == 1:
                 file.write(accept_tab[t])
                 file.write("\n")
             file.close()
-        print(Fore.RED + Style.BRIGHT + "\nThe results have been saved to the file`endpoints_mode1.txt' !")
+        print(Fore.RED + Style.BRIGHT + "\nThe results have been saved into `endpoints_mode1.txt' !")
         
 
 
@@ -125,7 +144,7 @@ elif choice == 2:
     contenu = list.readlines()
     #Un tableau s'est créé,|0 = première ligne,1 = 2e ligne...
 
-    print(Fore.RED + Style.BRIGHT +"Par défault,la liste des sites est une petite liste de sites connus, si vous voulez modifier ces valeurs,vous avez juste à modifier le fichier `list2.txt` !\n")
+    print(Fore.RED + Style.BRIGHT +"By default, the list of endpoints is a small random list, if you want to modify these values, you just have to modify the `list.txt` file!\n")
         
 
     #URL à tester
@@ -144,18 +163,32 @@ elif choice == 2:
         
         r = requests.get(modify_endpoint, headers=headers)
         print(r)
-        print(Fore.GREEN + Style.BRIGHT + "URL testée: ",modify_endpoint,"\n","Status:", r)
 
-        #Faire la barre de progression
-        total = len(contenu)
-        percentage = i * 100 / total
-        print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
-
-
+#-----------------------------------------------------Endpoint valide------------------------------------------------------
 
         if r.status_code == 200 and modify_endpoint != base_endpoint:
+            print(Fore.GREEN + Style.BRIGHT + "URL testée: ",modify_endpoint,"\n","Status:", r)
+
+            #Faire la barre de progression
+            total = len(contenu)
+            percentage = i * 100 / total
+            print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
+
             accept_tab.append(modify_endpoint)
-        print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+            print(Fore.GREEN + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
+
+
+#-----------------------------------------------------------Endpoint non valide--------------------------------------------------------------
+        else:
+            print(Fore.RED + Style.BRIGHT + "URL testée: ",modify_endpoint,"\n","Status:", r,"\nNot valid endpoint")
+
+            #Faire la barre de progression
+            total = len(contenu)
+            percentage = i * 100 / total
+            print(Fore.LIGHTYELLOW_EX + Style.BRIGHT + "\n",percentage,"%")
+
+            accept_tab.append(modify_endpoint)
+            print(Fore.RED + Style.BRIGHT + "=======================================================================================================================================================================================\n\n")
 
     print(Fore.RED + Style.BRIGHT + "SCAN COMPLETED")
 
@@ -167,10 +200,9 @@ elif choice == 2:
     for t in range(0,len(accept_tab)):
         print(Fore.RED + Style.BRIGHT + accept_tab[t],"")
 
-    save = input(Fore.CYAN + Style.BRIGHT + "\n\n\nVoulez vous enregister les endpoints dans un fichier ? (Note: les endpoints seront ajoutés,si il en existe déjà dans le fichier,ils seront stockés dans: `endpoints.txt) (y/n)")
+    save = input(Fore.CYAN + Style.BRIGHT + "\n\n\nDo you want to save endpoints to a file? (Note: endpoints will be added, if any already exist in the file, they will be stored in: `endpoints.txt) (y/n)")
 
     #Nom avec site checked (base URl)
-
     name = "\n\n========================================================================== " + base_endpoint + " ==========================================================================\n\n"
 
     if save == "y":
@@ -181,7 +213,7 @@ elif choice == 2:
                 file.write(accept_tab[t])
                 file.write("\n")
             file.close()
-        print(Fore.RED + Style.BRIGHT + "\nLes résultats ont été enregistrés dans le fichier `endpoints_mode2.txt' !")
+        print(Fore.RED + Style.BRIGHT + "\nResults have been save into `endpoints_mode2.txt' !")
         
 
 
